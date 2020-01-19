@@ -5,18 +5,18 @@ main() {
     SBDTable(name: 'users', primaryKeyName: 'USER_CODE', columns: [
       SBDColumn(
         name: 'USER_NAME',
-        type: SBDColumDataType.TEXT,
+        type: SBDColumnDataType.TEXT,
         isNotNull: true,
       ),
       SBDColumn(
         name: 'USER_EMAIL',
-        type: SBDColumDataType.TEXT,
+        type: SBDColumnDataType.TEXT,
         isNotNull: true,
         isUnique: true,
       ),
       SBDColumn(
         name: 'USER_ACTIVE',
-        type: SBDColumDataType.INTEGER,
+        type: SBDColumnDataType.INTEGER,
         isNotNull: true,
         defaultValue: 1,
       ),
@@ -24,7 +24,7 @@ main() {
     SBDTable(name: 'logs', primaryKeyName: 'LOG_CODE', columns: [
       SBDColumn(
         name: 'MESSAGE',
-        type: SBDColumDataType.TEXT,
+        type: SBDColumnDataType.TEXT,
         isNotNull: true,
       ),
       SBDColumn(
