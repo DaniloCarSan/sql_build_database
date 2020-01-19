@@ -1,11 +1,11 @@
 library sql_build_database;
 
-enum SBDColumDataType { INTEGER, TEXT, REAL, BLOB }
+enum SBDColumnDataType { INTEGER, TEXT, REAL, BLOB }
 
 class SBDColumn<T1> {
   final types = ['INTEGER', 'TEXT', 'REAL', 'BLOB'];
   String name;
-  final SBDColumDataType type;
+  final SBDColumnDataType type;
   final bool isUnique;
   final bool isNotNull;
   final T1 defaultValue;
@@ -15,7 +15,7 @@ class SBDColumn<T1> {
 
   SBDColumn({
     this.name,
-    this.type = SBDColumDataType.TEXT,
+    this.type = SBDColumnDataType.TEXT,
     this.isPrimaryKey = false,
     this.isUnique = false,
     this.isNotNull = false,
@@ -70,7 +70,7 @@ class SBDTable {
 
   final SBDColumn primaryKey = SBDColumn<int>(
     name: 'primaryKey',
-    type: SBDColumDataType.INTEGER,
+    type: SBDColumnDataType.INTEGER,
     isPrimaryKey: true,
     isNotNull: false,
     isAutoIncrement: true,

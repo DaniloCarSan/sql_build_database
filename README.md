@@ -9,17 +9,17 @@ Add  depencencies
       
 ````
   dependencies:
-    sql_build_database:^1.0.2
+    sql_build_database:^1.0.3
 ````
 
-## SBDColumDataType
+## SBDColumnDataType
 
   - **INTEGER** 
   - **TEXT** 
   - **REAL** 
   - **BLOB** 
 ````
-enum SBDColumDataType {INTEGER,TEXT,REAL,BLOB}
+enum SBDColumnDataType {INTEGER,TEXT,REAL,BLOB}
 
 ````
 
@@ -36,7 +36,7 @@ enum SBDColumDataType {INTEGER,TEXT,REAL,BLOB}
 ````
 SBDColumn(   
   name: 'COLUMN_NAME',
-  type: SBDColumDataType.INTEGER,
+  type: SBDColumnDataType.INTEGER,
   isUnique:true,
   isNotNull:true,
   defaultValue:1,
@@ -56,18 +56,18 @@ SBDColumn(
     columns: [
        SBDColumn(
          name: 'USER_NAME',
-         type: SBDColumDataType.TEXT,
+         type: SBDColumnDataType.TEXT,
          isNotNull: true,
        ),
        SBDColumn(
          name: 'USER_EMAIL',
-         type: SBDColumDataType.TEXT,
+         type: SBDColumnDataType.TEXT,
          isNotNull: true,
          isUnique: true,
        ),
        SBDColumn(
          name: 'USER_ACTIVE',
-         type: SBDColumDataType.INTEGER,
+         type: SBDColumnDataType.INTEGER,
          isNotNull: true,
          defaultValue: 1,
        ),
@@ -88,18 +88,18 @@ CREATE TABLE users (USER_CODE INTEGER PRIMARY KEY AUTOINCREMENT,USER_NAME TEXT N
        columns: [
            SBDColumn(
              name: 'USER_NAME',
-             type: SBDColumDataType.TEXT,
+             type: SBDColumnDataType.TEXT,
              isNotNull: true,
            ),
            SBDColumn(
              name: 'USER_EMAIL',
-             type: SBDColumDataType.TEXT,
+             type: SBDColumnDataType.TEXT,
              isNotNull: true,
              isUnique: true,
            ),
            SBDColumn(
              name: 'USER_ACTIVE',
-             type: SBDColumDataType.INTEGER,
+             type: SBDColumnDataType.INTEGER,
              isNotNull: true,
              defaultValue: 1,
            ),
@@ -111,7 +111,7 @@ CREATE TABLE users (USER_CODE INTEGER PRIMARY KEY AUTOINCREMENT,USER_NAME TEXT N
       columns: [
         SBDColumn(
           name: 'MESSAGE',
-          type: SBDColumDataType.TEXT,
+          type: SBDColumnDataType.TEXT,
           isNotNull: true,
         ),
         SBDColumn(
