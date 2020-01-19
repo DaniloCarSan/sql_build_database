@@ -9,7 +9,7 @@ Add  depencencies
       
 ````
   dependencies:
-    sql_build_databse:^1.0.2
+    sql_build_database:^1.0.2
 ````
 
 ## SBDColumDataType
