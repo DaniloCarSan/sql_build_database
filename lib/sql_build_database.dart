@@ -68,6 +68,10 @@ class SBDTable {
 
   final String primaryKeyName;
 
+  final List<Map<String, dynamic>> initialInserts;
+
+  final execInitialInserts;
+
   final SBDColumn primaryKey = SBDColumn<int>(
     name: 'primaryKey',
     type: SBDColumnDataType.INTEGER,
@@ -79,7 +83,12 @@ class SBDTable {
 
   final List<SBDColumn> columns;
 
-  SBDTable({this.name, this.primaryKeyName, this.columns});
+  SBDTable(
+      {this.name,
+      this.primaryKeyName,
+      this.columns,
+      this.initialInserts,
+      this.execInitialInserts = true});
 
   List<String> columnsFields() {
     List<String> columnsFields = [];
@@ -108,12 +117,36 @@ class SBDTable {
     return columnsFields;
   }
 
+  String buildInsert(Map<String, dynamic> map) {
+    return "INSERT INTO ${this.name}(" +
+        map.keys.join(',') +
+        ")VALUES('" +
+        map.values.join("','") +
+        "');";
+  }
+
+  List<String> buildInserts() {
+    List<String> inserts = [];
+
+    for (var map in this.initialInserts) {
+      inserts.add(this.buildInsert(map));
+    }
+
+    return inserts;
+  }
+
   build() {
     String table = "CREATE TABLE $name (";
 
     table += this.columnsFields().join(',');
 
     table += ");";
+
+    if (this.initialInserts != null) {
+      if (this.execInitialInserts) {
+        table += this.buildInserts().join('');
+      }
+    }
 
     return table;
   }

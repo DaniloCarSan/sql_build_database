@@ -1,6 +1,6 @@
 name: sql_build_database
 description: A new Flutter package to create a database structure simply and quickly.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/DaniloCarSan/sql_build_database
 
 environment:

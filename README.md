@@ -9,7 +9,7 @@ Add  depencencies
       
 ````
   dependencies:
-    sql_build_database:^1.0.3
+    sql_build_database:^1.0.4
 ````
 
 ## SBDColumnDataType
@@ -71,13 +71,26 @@ SBDColumn(
          isNotNull: true,
          defaultValue: 1,
        ),
-    ]
+    ],
+    initialInserts: [
+        {'USER_CODE':1,'USER_NAME':'Danilo Dos Satos Carreiro','USER_EMAIL':'danilocarsan@gmail.com','USER_ACTIVE':1},
+    ],
+    execInitialInserts: true
  )
 ````
-## print(tb.build);
+## print(tb.build());
 ````
 CREATE TABLE users (USER_CODE INTEGER PRIMARY KEY AUTOINCREMENT,USER_NAME TEXT NOT NULL,USER_EMAIL TEXT NOT NULL UNIQUE,USER_ACTIVE INTEGER NOT NULL DEFAULT 1);
+
+INSERT INTO users(USER_CODE,USER_NAME,USER_EMAIL,USER_ACTIVE)VALUES('1','Danilo Dos Satos Carreiro','danilocarsan@gmail.com','1');
 ````
+
+## print(tb.initialInserts())
+`````
+[
+  INSERT INTO users(USER_CODE,USER_NAME,USER_EMAIL,USER_ACTIVE)VALUES('1','Danilo Dos Satos Carreiro','danilocarsan@gmail.com','1');
+]
+`````
 
 #SBD
 ````
