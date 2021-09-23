@@ -8,13 +8,13 @@ class SBDColumn<T1> {
   final SBDColumnDataType type;
   final bool isUnique;
   final bool isNotNull;
-  final T1 defaultValue;
+  final T1? defaultValue;
   final bool isPrimaryKey;
   final bool isAutoIncrement;
-  final List<String> foreignKey;
+  final List<String>? foreignKey;
 
   SBDColumn({
-    this.name,
+    required this.name,
     this.type = SBDColumnDataType.TEXT,
     this.isPrimaryKey = false,
     this.isUnique = false,
@@ -55,8 +55,10 @@ class SBDColumn<T1> {
       column.add('DEFAULT $defaultValue');
     }
 
-    if (foreignKey != null) {
-      column.add("REFERENCES " + foreignKey[0] + '(' + foreignKey[1] + ')');
+    if (foreignKey != null)
+    {
+  
+      column.add("REFERENCES " + (foreignKey?.elementAt(0)??'') + '(' + ( foreignKey?.elementAt(1)??'' ) + ')');
     }
 
     return column.join(' ');
@@ -68,7 +70,7 @@ class SBDTable {
 
   final String primaryKeyName;
 
-  final List<Map<String, dynamic>> initialInserts;
+  final List<Map<String, dynamic>>? initialInserts;
 
   final execInitialInserts;
 
@@ -81,11 +83,11 @@ class SBDTable {
     isUnique: false,
   );
 
-  final List<SBDColumn> columns;
+  final List<SBDColumn>? columns;
 
   SBDTable(
-      {this.name,
-      this.primaryKeyName,
+      { required this.name,
+      required this.primaryKeyName,
       this.columns,
       this.initialInserts,
       this.execInitialInserts = true});
@@ -94,20 +96,18 @@ class SBDTable {
     List<String> columnsFields = [];
     List<String> foreignKeys = [];
 
-    if (this.primaryKeyName != null) {
-      this.primaryKey.setName(this.primaryKeyName);
-    }
-
+    this.primaryKey.setName(this.primaryKeyName);
+    
     columnsFields.add(this.primaryKey.build());
 
-    this.columns.forEach((column) {
+    this.columns?.forEach((column) {
       columnsFields.add(column.build());
 
       if (column.foreignKey != null) {
         foreignKeys.add("FOREIGN KEY (${column.name}) REFERENCES " +
-            column.foreignKey[0] +
+            (column.foreignKey?.elementAt(0)??'') +
             " (" +
-            column.foreignKey[1] +
+            (column.foreignKey?.elementAt(1)??'') +
             ")");
       }
     });
@@ -128,7 +128,7 @@ class SBDTable {
   List<String> buildInserts() {
     List<String> inserts = [];
 
-    for (var map in this.initialInserts) {
+    for (var map in initialInserts??[]) {
       inserts.add(this.buildInsert(map));
     }
 
